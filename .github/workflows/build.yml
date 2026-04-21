@@ -20,8 +20,6 @@ jobs:
     
     - name: Build with Maven
       run: |
-        mkdir -p src/main/java/com/lobbycompass
-        # Создаём временный pom.xml
         cat > pom.xml << 'EOF'
         <?xml version="1.0" encoding="UTF-8"?>
         <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -81,22 +79,11 @@ jobs:
                         </executions>
                     </plugin>
                 </plugins>
-                <resources>
-                    <resource>
-                        <directory>src/main/resources</directory>
-                        <filtering>false</filtering>
-                    </resource>
-                </resources>
             </build>
         </project>
         EOF
         
-    - name: Compile plugin
-      run: |
-        # Копируем исходники в нужную папку
-        mkdir -p src/main/java/com/lobbycompass
-        cp src/main/java/com/lobbycompass/Main.java src/main/java/com/lobbycompass/
-        # Запускаем компиляцию
+        # Компилируем (без лишнего копирования)
         mvn clean package
     
     - name: Upload JAR
