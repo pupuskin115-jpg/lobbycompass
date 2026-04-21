@@ -1,0 +1,11 @@
+name: LobbyCompass
+version: 1.0
+main: com.lobbycompass.Main
+api-version: "1.21"
+author: YourName
+description: Компас для выбора режима игры
+
+commands:
+  join:
+    description: Телепорт в выбранный мир
+    usage: /join <anarchy|grief>
